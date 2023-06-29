@@ -13,6 +13,7 @@ namespace Portafolio.Controllers
             _logger = logger;
         }
 
+        //Get: Index
         public IActionResult Index()
         {
             return View();
