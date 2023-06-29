@@ -1,76 +1,39 @@
-﻿@{
+﻿@model HomeIndexViewModel
+
+@{
     ViewData["Title"] = "Página Principal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Soy Andrés Salinas</h1>
-    <h3>Soy un desarrollador Full Stack especializado en .Net y Javascript.</h3>
-    <img id="foto" src="~/imagenes/foto.jpg" alt="Foto de Andrés" />
-</div>
+<partial name="_Presentacion" />
 
-<div id="logo_dotnet" class="text-center mx-auto">
-    <img id="imagen-dotnet" src="~/imagenes/DotNet_logo.png" alt="dotnet logo" />
-</div>
+<partial name="_Habilidades" />
 
-<div class="row justify-content-center text-center bg-primary">
-    <div class="col col-md-7 seccion-bienvenida">
-        <h1>Te doy la bienvenida a mi portafolio</h1>
-        <p>
-            Tengo experiencia desarrollando 2 años a nivel personal y profesional. He tenido la oportunidad de trabajar
-            en diferentes tipos de proyectos con diferentes tecnologías. Las tecnologías front-end que he manejado son HTML,
-            CSS y Javascript; por otro lado, las tecnologías back-end que he manejado son NodeJs, C#/.Net y Java. Tengo
-            experiencia manejadno bases de datos relacionaes principalmente SQL Server pero también he manejado MySql,
-            Oracle y PostgreSql.
-        </p>
+@if (Model.Proyectos is not null)
+{
+    <div class="text-center proyectos_container">
+        <h1>Mis trabajos recientes</h1>
+        <p>Aquí puedes ver algunos de mis trabajos más recientes.</p>
     </div>
-</div>
 
-<div id="data_experiencia">
-    <div class="row justify-content-md-center text-center">
-        <div class="col col-3 bg-white exp_contenido contenido_izq">
-            <i class="bi bi-hdd-stack"></i>
-            <h3>Back-End</h3>
-            <p>
-                Trabajo en aplicaciones monolíticas y microservicios usando manejadores de versiones.
-            </p>
-            <p class="text-primary cabecera">
-                Stack:
-            </p>
-            <p>
-                ASP.NET, ASP.NET Core, NodeJs, Java
-            </p>
-            <p class="text-primary cabecera">
-                Experiencia
-            </p>
-            <ul>
-                <li>ASP.NET Framework</li>
-                <li>ASP.NET Core MVC</li>
-                <li>Win Forms</li>
-                <li>Web Forms</li>
-                <li>Entity Framework</li>
-                <li>Dapper</li>
-                <li>LinQ</li>
-            </ul>
-        </div>
-        <div class="col col-3 bg-white exp_contenido contenido_der">
-            <i class="bi bi-file-earmark-code"></i>
-            <h3>Front-End</h3>
-            <p>
-                Experiencia en tecnologías de front end que cumplen con los requerimientos del negocio
-            </p>
-            <p class="text-primary cabecera">
-                Stack:
-            </p>
-            <p>
-                HTML, CSS, JavaScript, Bootstrap
-            </p>
-            <p class="text-primary cabecera">
-                Experiencia
-            </p>
-            <ul>
-                <li>jQuery</li>
-                <li>Razor</li>
-            </ul>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var proyecto in Model.Proyectos)
+            {
+                <div class="col">
+                    <div class="card card_proyecto">
+                        <div class="proyecto_img">
+                            <img src="@proyecto.ImagenUrl" class="card-img-top" alt="Imágen proyecto" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@proyecto.Titulo</h5>
+                            <p class="card-text">@proyecto.Descripcion</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" href="@proyecto.Link" target="_blank" rel="noopener noreferrer">Visitar</a>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</div>
+}

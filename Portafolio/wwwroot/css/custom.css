@@ -58,3 +58,21 @@
 .contenido_der {
     border-radius: 0 15px 15px 0;
 }
+
+.proyectos_container {
+    padding-top: 6rem;
+}
+
+.card_proyecto {
+    height: 70vh;
+}
+
+.proyecto_img {
+    width: 100%;
+    height: 40%;
+}
+
+    .proyecto_img img {
+        width: 100%;
+        height: 100%;
+    }
