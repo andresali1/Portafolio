@@ -1,20 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Portafolio.Interfaces;
 using Portafolio.Models;
-using Portafolio.Services;
 using System.Diagnostics;
 
 namespace Portafolio.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IRepositorioProyectos _repositorioProyectos;
 
-        public HomeController(ILogger<HomeController> logger, IRepositorioProyectos repositorioProyectos)
+        public HomeController(IRepositorioProyectos repositorioProyectos)
         {
-            _logger = logger;
-            _repositorioProyectos = repositorioProyectos;;
+            _repositorioProyectos = repositorioProyectos;
         }
 
         //Get: Index
@@ -26,7 +23,28 @@ namespace Portafolio.Controllers
             return View(modelo);
         }
 
-        public IActionResult Privacy()
+        //Get: Proyectos
+        public IActionResult Proyectos()
+        {
+            var proyectos = _repositorioProyectos.ObtenerProyectos();
+
+            return View(proyectos);
+        }
+
+        //Get: Contacto
+        [HttpGet]
+        public IActionResult Contacto()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contacto(ContactoViewModel contactoViewModel)
+        {
+            return RedirectToAction("Gracias");
+        }
+
+        public IActionResult Gracias()
         {
             return View();
         }
