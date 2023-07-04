@@ -1,7 +1,11 @@
- var builder = WebApplication.CreateBuilder(args);
+using Portafolio.Interfaces;
+using Portafolio.Services;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRepositorioProyectos, RepositorioProyectos>();
 
 var app = builder.Build();
 
